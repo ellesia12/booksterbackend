@@ -1,14 +1,23 @@
-const http = require('http');
+require("dotenv").config();
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const express = require("express");
+const app = express();
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
+const client = require("./client");
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
+const cors = require("cors");
+app.use(cors());
+
+//Build server
+app.set("port", process.env.port || 3000);
+
+
+
+
+//Start server
+app.listen(app.get("port"), (server) => {
+	console.info(`Server listen on port ${app.get("port")}`);
 });
