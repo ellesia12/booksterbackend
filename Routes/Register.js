@@ -9,10 +9,10 @@ registerRouter.get("/", (req, res) => {
 		.catch((err) => console.log(err));
 });
 
-registerRouter.post("/", (req, res)=>{
-	const { first_name, surname, email, password, bio, fav_books} = req.body;
-	const text = `INSERT INTO users (first_name, surname, email, password, bio, fav_books) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
-	const values = [first_name, surname, email, password, bio, fav_books];
+registerRouter.post("/", (req, res)=> {
+	const { first_name, surname, email, password, bio, fav_book} = req.body;
+	const text = `INSERT INTO users (first_name, surname, email, password, bio, fav_book) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+	const values = [first_name, surname, email, password, bio, fav_book];
 
 	client.query(text, values)
 	.then((data)=>res.json(data.rows))
