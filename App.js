@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 const cors = require("cors");
 app.use(cors());
 
+//Routers
+
+const loginRouter = require("./Routes/loginRouter");
+app.use("/login", loginRouter);
+
 //Build server
 app.set("port", process.env.port || 3000);
 
