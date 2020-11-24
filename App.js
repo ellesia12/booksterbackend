@@ -13,8 +13,8 @@ app.use(cors());
 
 //Routers
 
-const loginRouter = require("./Routes/loginRouter");
-app.use("/login", loginRouter);
+const registerRouter = require("./Routes/Register");
+app.use("/register", registerRouter);
 
 //Build server
 app.set("port", process.env.port || 3000);

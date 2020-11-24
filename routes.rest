@@ -1,0 +1,13 @@
+POST http://localhost:3000/register 
+content-type: application/json
+{
+    "first_name":"asdfas",
+    "surname":"aasdf",
+    "email":"asdfa@asdf",
+    "password":"asdfas",
+    "bio":"adafds",
+    "fav_books":"asdffa"
+}
+
+### 
+GET http://localhost:3000/register
