@@ -17,7 +17,9 @@ booksRouter.post("/", (req, res) =>{
 
     client.query(text, values)
 	.then((data)=>res.json(data.rows))
-	.catch((error)=> console.log(error)); 
+	.catch(error=>{
+        res.status(400).send({bad: error})
+    })
 })
 
 
