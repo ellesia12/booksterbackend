@@ -3,12 +3,12 @@ content-type: application/json
 
 
 {
-    "first_name":"asdfas",
-    "surname":"aasdf",
-    "email":"asdfa@asdf",
-    "password":"asdfas",
-    "bio":"adafds",
-    "fav_book":"asdffa"
+    "first_name":"Ellesia",
+    "surname":"Janto",
+    "email":"elle@bookster.com",
+    "password":"pizza",
+    "bio":"I am an aspiring front end web developer who loves latte art",
+    "fav_book":"Harry Potter"
 }
 
 ### 
