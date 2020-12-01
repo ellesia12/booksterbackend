@@ -10,7 +10,9 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 // app.use(express.json)
 const cors = require("cors");
-app.use(cors());
+app.use(cors({
+    exposedHeaders: 'x-secret-token',
+  }))
 
 //Routers
 

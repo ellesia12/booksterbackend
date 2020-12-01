@@ -2,12 +2,9 @@ const express = require("express");
 const client = require("../client");
 const registerRouter = express.Router();
 
-registerRouter.get("/", (req, res) => {
-	client
-		.query("SELECT * FROM users")
-		.then((data) => res.json(data.rows))
-		.catch((err) => console.log(err));
-});
+
+
+
 
 /* registerRouter.post("/", (req, res)=> {
 	const first_name = req.body.first_name;
