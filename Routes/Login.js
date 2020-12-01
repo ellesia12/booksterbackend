@@ -1,8 +1,8 @@
 const express = require("express");
 const client = require("../client");
 const loginRouter = express.Router();
-
-
+const jwt = require('jsonwebtoken');
+const authorizeUser = require("../middleware/authorizeUser")
 
 
 
@@ -17,33 +17,30 @@ loginRouter.post("/", (req, res) =>{
         client.query(text, values)
         .then(result => {
             if (!result.rows.length) return  res.status(404).send("this email and password combo don't exist")
-            res.send(result.rows)
+            const { id, email } = result.rows[0]
+           
+            const token = jwt.sign({
+                id,
+                email
+              }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+              console.log(result.rows[0])
+              console.log(token)
+
+              res.set('x-secret-token', token).send(result.rows)
         })
         .catch(error=>{
-            res.status(400).send({bad: error})
+            res.status(400).send({bad: error.message})
         })
-    
-     /*    client.query(text, values, (error, result) =>{
-            if(error){
-                res.send({error: error})
-            }
-            if(result){
-                res.send(result);
-            } else{
-                res.send( {message:"this email and password combo don't exist"});
-            }
-        }
-    )
-    });
- */
-
-   /*  console.log(req.body)
-    )
-        .then((data)=>res.json(data.rows))
-        .catch((error)=> console.log(error)); */
-
 })
 
+loginRouter.post("/me", authorizeUser, (req, res) => {
+	/* client
+		.query("SELECT * FROM users")
+		.then((data) => res.json(data.rows))
+		.catch((err) => console.log(err)); */
+		res.send(req.user)
+});
 
 
 
