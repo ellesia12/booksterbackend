@@ -13,3 +13,6 @@ content-type: application/json
 
 ### 
 GET http://localhost:3000/register
+
+###
+GET http://localhost:3000/chat
