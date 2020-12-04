@@ -34,8 +34,13 @@ app.use("/login", loginRouter);
 const booksRouter = require("./Routes/Books");
 app.use("/books", booksRouter)
 
+
 //First require functions from chatUsers.js
 const { addUser, removeUser, getUser, getUsersInRoom }=require('./chatUsers');
+
+const usersBooksRoute = require("./Routes/UsersBooks");
+const usersBooksRouter = require("./Routes/UsersBooks");
+app.use("/mybooks", usersBooksRouter)
 
 
 const chat = require("./Routes/Chat");
