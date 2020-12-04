@@ -24,8 +24,8 @@ loginRouter.post("/", (req, res) =>{
                 email
               }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-              console.log(result.rows[0])
-              console.log(token)
+            //   console.log(result.rows[0])
+            //   console.log(token)
 
               res.set('x-secret-token', token).send(result.rows)
         })
@@ -35,14 +35,26 @@ loginRouter.post("/", (req, res) =>{
 })
 
 loginRouter.post("/me", authorizeUser, (req, res) => {
-	/* client
+    
+   const { id, email } = req.user
+
+    const text = `SELECT first_name, surname, email, bio, fav_book FROM users WHERE id = $1 AND email = $2`
+    const values = [id, email]
+
+    client
+        .query(text, values)
+        .then((data) => res.send(data.rows[0]))
+        .catch((err)=>console.log(err))
+    
+    /* client
 		.query("SELECT * FROM users")
 		.then((data) => res.json(data.rows))
-		.catch((err) => console.log(err)); */
-		res.send(req.user)
+		.catch((err) => console.log(err)); */  
+        // res.send(req.user)
+        
 });
 
 
 
 
-module.exports = loginRouter
+module.exports = loginRouter;
