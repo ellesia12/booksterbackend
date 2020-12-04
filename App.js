@@ -26,6 +26,9 @@ app.use("/login", loginRouter);
 const booksRouter = require("./Routes/Books");
 app.use("/books", booksRouter)
 
+const usersBooksRoute = require("./Routes/UsersBooks");
+const usersBooksRouter = require("./Routes/UsersBooks");
+app.use("/mybooks", usersBooksRouter)
 
 //Build server
 app.set("port", process.env.port || 3000);
