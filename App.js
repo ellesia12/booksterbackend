@@ -63,20 +63,21 @@ io.on('connect', (socket) => {
 		socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!`});
 		
 		io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room) }); 
-      
-		callback();
+    
+    callback();
+   
 		
   });
 
 //   Now we will make events for user generated messages. 
 
   socket.on('sendMessage', (message , callback) => {
-      let user = getUsersInRoom ({id: socket.id});
+      let user = getUsersInRoom({id: socket.id});
       
 
-	io.emit('message', {user: user.name, text: message});
+  io.emit('message', {user: user.name, text: message});
+ 
   callback();
-  console.log(user)
   
     
   });
@@ -84,13 +85,15 @@ io.on('connect', (socket) => {
  // This happens when a user leaves a chat
 
   socket.on('disconnected', () => {
-	let user = removeUser(socket.id);
+	const user = removeUser(socket.id);
 	
 	if(user) {
 		io.to(user.room).emit('message', {user: 'Admin', text: `${user.name} has left.`});
 		io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
     }
   })
+
+ 
 });
 
 //Build server
