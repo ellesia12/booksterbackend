@@ -10,10 +10,10 @@ booksRouter.post("/", (req, res) =>{
     
     // double check on frontend how data is given to us OR be sure to send back "bookData " in this way
 
-    const { title, thumbnail, synopsis, author, googleid } = req.body.bookData;
+    const { title, thumbnail, synopsis, author, googleid, genre } = req.body.bookData;
 
-    const text = `INSERT INTO books (title, thumbnail, synopsis, author, googleid) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-    const values = [title, thumbnail, synopsis, author, googleid];
+    const text = `INSERT INTO books (title, thumbnail, synopsis, author, googleid, genre) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const values = [title, thumbnail, synopsis, author, googleid, genre];
 
     client.query(text, values)
 	.then((data)=>res.json(data.rows))
