@@ -52,8 +52,8 @@ const client = require("./client");
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
-	
-	   const { error, user } = addUser( {id: socket.id, name, room});
+	   console.log('userjoin')
+	   const { error, user } = addUser({id: socket.id, name, room});
   
 	   if(error) return callback(error);
 
@@ -65,27 +65,30 @@ io.on('connect', (socket) => {
 		io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room) }); 
     
     callback();
-   
+    // console.log(user.name)
+ 
 		
   });
 
 //   Now we will make events for user generated messages. 
 
-  socket.on('sendMessage', (message , callback) => {
-      let user = getUsersInRoom({id: socket.id});
+  socket.on('sendMessage', ( message, callback) => {
+      let user = getUser({id: socket.id });
+    console.log(user)
       
-
-  io.emit('message', {user: user.name, text: message});
- 
-  callback();
+  // io.emit('message', {user: user.name, text: message});
+  // console.log(user)
+  // callback();
   
+  // console.log(message)
     
   });
 
  // This happens when a user leaves a chat
 
   socket.on('disconnected', () => {
-	const user = removeUser(socket.id);
+  const user = removeUser({id: socket.id});
+ 
 	
 	if(user) {
 		io.to(user.room).emit('message', {user: 'Admin', text: `${user.name} has left.`});
