@@ -15,26 +15,30 @@ const addUser = ({ id, name, room}) => {
 const user = { id, name, room };
 users.push(user); 
 console.log('New user added: ', users)
+console.log('new userid: ', id)
 return { user };
 
 }
 
 const removeUser = ( id ) => {
-   
+   console.log('removeUserid:', id)
     const index = users.findIndex((user) => user.id === id);
     
     if(index !== -1)  return users.splice(index, 1)[0];
+  
 }
 
-const getUser = ({id}) => {
-    console.log('getUser: ', users)
-     console.log(id)
-     users.find((user) => user.id === id);
+const getUser = ( {id} ) => {
+    const user = users.find((user) => user.id === id);
+    console.log('getUser:', users)
+    console.log('getUserid: ', id)
+   return user
+   
 }
 
 const getUsersInRoom = (room) => {
 
- users.filter((user) => user.room === room);}
+ users.filter((user) => user.room === room)};
 
  
 

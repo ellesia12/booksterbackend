@@ -4,10 +4,11 @@ const express = require("express");
 const app = express();
 const server = http.createServer(app);
 const socketio = require('socket.io');
-const io = socketio(server, {
+const io = socketio(server, 
+  {
   cors: {
     origin: "http://localhost:3001",
-    methods: ["GET", "POST"],
+    // methods: ["GET", "POST"],
     // allowHeaders: ['x-secret-token'],
     // credentials: true
   }
@@ -73,16 +74,14 @@ io.on('connect', (socket) => {
 //   Now we will make events for user generated messages. 
 
   socket.on('sendMessage', ( message, callback) => {
-      let user = getUser({id: socket.id });
-    console.log(user)
+      let user = getUser({id: socket.id});
       
-  // io.emit('message', {user: user.name, text: message});
-  // console.log(user)
-  // callback();
+  io.emit('message', {user: user.name, text: message});
   
-  // console.log(message)
-    
+  callback();
+  
   });
+
 
  // This happens when a user leaves a chat
 
