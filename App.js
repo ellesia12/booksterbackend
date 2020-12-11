@@ -103,6 +103,6 @@ app.set("port", process.env.port);
 
 
 //Start server
-server.listen(app.get("port"), (server) => {
+server.listen(app.get("PORT), (server) => {
 	console.info(`Server listen on port ${app.get("port")}`);
 });
