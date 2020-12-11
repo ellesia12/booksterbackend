@@ -99,7 +99,7 @@ io.on('connect', (socket) => {
 });
 
 //Build server
-app.set("port", process.env.port || 3000);
+app.set("port", process.env.port);
 
 
 //Start server
