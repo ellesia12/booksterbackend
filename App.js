@@ -99,10 +99,10 @@ io.on('connect', (socket) => {
 });
 
 //Build server
-app.set("port", process.env.port);
 
+const port = process.env.PORT || 3000
 
 //Start server
-server.listen(app.get("PORT"), (server) => {
+server.listen(port , (server) => {
 	console.info(`Server listen on port ${app.get("port")}`);
 });
