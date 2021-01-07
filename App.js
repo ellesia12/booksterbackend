@@ -104,5 +104,5 @@ const port = process.env.PORT || 3000
 
 //Start server
 server.listen(port , (server) => {
-	console.info(`Server listen on port ${app.get("port")}`);
+	console.info(`Server listen on port ${port}`);
 });
