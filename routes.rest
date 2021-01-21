@@ -3,17 +3,32 @@ content-type: application/json
 
 
 {
-    "first_name":"Ellesia",
-    "surname":"Janto",
-    "email":"elle@bookster.com",
-    "password":"pizza",
+    "first_name":"Gorilla 3",
+    "surname":"Drews",
+    "email":"captaindrews@gmail.com",
+    "password":"imogen",
     "bio":"I am an aspiring front end web developer who loves latte art",
-    "fav_book":"Harry Potter"
+    "fav_book":"To Kill a Mockingbird"
 }
 
 ### 
 
+POST http://localhost:3000/login HTTP/1.1
+content-type: application/json
+
+
+{
+    
+    "email":"captaindrews@gmail.com",
+    "password":"imogen"
+   
+}
+
+###
+
 GET http://localhost:3000/register
+
+
 
 ###
 GET http://localhost:3000/chat
